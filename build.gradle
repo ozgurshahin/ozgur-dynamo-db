@@ -1,0 +1,36 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //DynamoDB
+    implementation 'com.github.derjust:spring-data-dynamodb:5.1.0'
+    implementation 'com.amazonaws:aws-java-sdk-dynamodb'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    // springfox-swagger2
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+
+    testImplementation 'junit:junit:4.13.2'
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

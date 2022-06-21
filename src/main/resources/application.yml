@@ -1,0 +1,17 @@
+spring:
+  data:
+    dynamodb:
+      entity2ddl:
+        auto: create-drop
+        gsiProjectionType: ALL
+        readCapacity: 10
+        writeCapacity: 1
+
+#DynamoDB
+amazon:
+  dynamodb:
+    endpoint: "http://localhost:8000"
+    signingRegion: eu-west-1
+  aws:
+    accesskey: access
+    secretkey: secret
