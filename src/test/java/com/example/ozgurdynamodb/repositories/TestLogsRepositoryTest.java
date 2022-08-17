@@ -16,6 +16,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
@@ -28,7 +30,7 @@ import static org.junit.Assert.assertNotNull;
         "amazon.dynamodb.endpoint=http://localhost:8000/",
         "amazon.aws.accesskey=test1",
         "amazon.aws.secretkey=test231"})
-public class TestLogsRepositoryTest {
+class TestLogsRepositoryTest {
 
     private DynamoDBMapper dynamoDBMapper;
 
@@ -53,8 +55,9 @@ public class TestLogsRepositoryTest {
     }
 
     @Test
-    public void givenItemWithExpectedCost_whenRunFindAll_thenItemIsFound() {
-        TestLogs testLogs = new TestLogs("1", "1", "1", "1", "1");
+    void givenItemWithExpectedCost_whenRunFindAll_thenItemIsFound() {
+        long epochTimeNowPlus2Months = LocalDateTime.now().plusMonths(2L).toEpochSecond(ZoneOffset.UTC);
+        TestLogs testLogs = new TestLogs("1", "1", "1", "1", "1", epochTimeNowPlus2Months);
         repository.save(testLogs);
         List<TestLogs> result = (List<TestLogs>) repository.findAll();
         assertNotNull(result);

@@ -42,6 +42,12 @@ public class DynamoDBConfig {
 
     @Bean
     @Primary
+    public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB, DynamoDBMapperConfig dynamoDBMapperConfig) {
+        return new DynamoDBMapper(amazonDynamoDB, dynamoDBMapperConfig);
+    }
+
+    @Bean
+    @Primary
     public DynamoDBMapperConfig dynamoDBMapperConfig() {
         DynamoDBMapperConfig.Builder builder = new DynamoDBMapperConfig.Builder();
         builder.withTypeConverterFactory(DynamoDBTypeConverterFactory.standard());
@@ -56,11 +62,5 @@ public class DynamoDBConfig {
         String prefix = "HERE_CAN_BE_ENV_NAME" + "_";
         return DynamoDBMapperConfig.TableNameOverride.withTableNamePrefix(prefix);
 
-    }
-
-    @Bean
-    @Primary
-    public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB, DynamoDBMapperConfig dynamoDBMapperConfig) {
-        return new DynamoDBMapper(amazonDynamoDB, dynamoDBMapperConfig);
     }
 }

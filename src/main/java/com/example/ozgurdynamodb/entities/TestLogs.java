@@ -32,4 +32,7 @@ public class TestLogs {
 
     @DynamoDBAttribute
     private String rawResponse;
+
+    @DynamoDBAttribute
+    private long ttl;
 }

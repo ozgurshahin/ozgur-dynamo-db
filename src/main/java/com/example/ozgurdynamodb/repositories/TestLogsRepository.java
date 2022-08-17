@@ -6,11 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @EnableScan
 @Repository
 public interface TestLogsRepository extends CrudRepository<TestLogs, String> {
-    TestLogs findFirstByTransactionId(String transactionId);
+    Optional<TestLogs> findFirstByTransactionId(String transactionId);
 
     List<TestLogs> findAllByTransactionId(String transactionId);
 }
